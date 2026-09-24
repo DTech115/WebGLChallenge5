@@ -271,6 +271,8 @@ function render()
         false,
         perspective(canvas.width / canvas.height)
     );
+
+    // for random light positions:
     let x = Math.cos(theta * 0.02);
     let z = Math.sin(theta * 0.02);
     gl.uniform3f(
@@ -279,15 +281,20 @@ function render()
         1.0,
         z
     );
-    gl.uniform3f(uniforms.lightColor, 1.0, 0.3, 0.1);
-    gl.uniform1f(uniforms.ambient, 0.05);
+
+    // for random rgb colors:
+    let r = Math.abs(Math.sin(theta * 0.02));
+    let g = Math.abs(Math.cos(theta * 0.03));
+    let b = Math.abs(Math.sin(theta * 0.04));
+    gl.uniform3f(uniforms.lightColor, r, g, b);
+    gl.uniform1f(uniforms.ambient, 0.3);
     draw(ground, identity(), [0.35, 0.38, 0.42]);
     draw(cube, transform(-2.5, 1, 0, 1, 0), [0.9, 0.25, 0.2]);
     draw(cube, transform(2.5, 1, 0, 1, 0), [0.2, 0.45, 0.95]);
     draw(sphere, transform(0, 0.7, -2.5, 0.7, 0), [0.95, 0.7, 0.15]);
     draw(pyramid, transform(0, 0, 2.5, 1.2, 0), [0.2, 0.8, 0.4]);
 
-    theta += 1;
+    theta += 2.2;
     requestAnimationFrame(render);
 }
 
