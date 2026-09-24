@@ -271,12 +271,12 @@ function render()
     );
     gl.uniform3f(
         uniforms.lightDirection,
-        1,
-        1,
-        0
+        0.5,
+        0.2,
+        0.5
     );
-    gl.uniform3f(uniforms.lightColor, 0.4, 0.6, 1.0);
-    gl.uniform1f(uniforms.ambient, 0.1);
+    gl.uniform3f(uniforms.lightColor, 1.0, 0.3, 0.1);
+    gl.uniform1f(uniforms.ambient, 0.05);
     draw(ground, identity(), [0.35, 0.38, 0.42]);
     draw(cube, transform(-2.5, 1, 0, 1, 0), [0.9, 0.25, 0.2]);
     draw(cube, transform(2.5, 1, 0, 1, 0), [0.2, 0.45, 0.95]);
