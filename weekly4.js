@@ -250,6 +250,8 @@ function draw(mesh, model, color)
     gl.drawArrays(gl.TRIANGLES, 0, mesh.count);
 }
 
+let theta = 0;
+
 function render()
 {
     const ratio = window.devicePixelRatio || 1;
@@ -269,11 +271,13 @@ function render()
         false,
         perspective(canvas.width / canvas.height)
     );
+    let x = Math.cos(theta * 0.02);
+    let z = Math.sin(theta * 0.02);
     gl.uniform3f(
-        uniforms.lightDirection,
-        0.5,
-        0.2,
-        0.5
+        uniforms.lightDirection,    
+        x,
+        1.0,
+        z
     );
     gl.uniform3f(uniforms.lightColor, 1.0, 0.3, 0.1);
     gl.uniform1f(uniforms.ambient, 0.05);
@@ -282,6 +286,9 @@ function render()
     draw(cube, transform(2.5, 1, 0, 1, 0), [0.2, 0.45, 0.95]);
     draw(sphere, transform(0, 0.7, -2.5, 0.7, 0), [0.95, 0.7, 0.15]);
     draw(pyramid, transform(0, 0, 2.5, 1.2, 0), [0.2, 0.8, 0.4]);
+
+    theta += 1;
+    requestAnimationFrame(render);
 }
 
 render();
