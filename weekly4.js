@@ -273,28 +273,41 @@ function render()
     );
 
     // for random light positions:
-    let x = Math.cos(theta * 0.02);
-    let z = Math.sin(theta * 0.02);
+    // let x = Math.cos(theta * 0.02);
+    // let y = Math.sin(theta * 0.02);
+    // let z = Math.sin(theta * 0.02);
+
+    // for deep water positions
+    let x = Math.cos(theta * 0.02); 
+    let y = 1;
+    let z = 0;
+
     gl.uniform3f(
         uniforms.lightDirection,    
         x,
-        1.0,
+        y,
         z
     );
 
     // for random rgb colors:
-    let r = Math.abs(Math.sin(theta * 0.02));
-    let g = Math.abs(Math.cos(theta * 0.03));
-    let b = Math.abs(Math.sin(theta * 0.04));
+    // let r = Math.abs(Math.sin(theta * 0.02));
+    // let g = Math.abs(Math.cos(theta * 0.03));
+    // let b = Math.abs(Math.sin(theta * 0.04));
+
+    //for deep water colors
+    let r = 0.043;
+    let g = 0;
+    let b = 0.221;
+
     gl.uniform3f(uniforms.lightColor, r, g, b);
-    gl.uniform1f(uniforms.ambient, 0.3);
+    gl.uniform1f(uniforms.ambient, 0.02);
     draw(ground, identity(), [0.35, 0.38, 0.42]);
     draw(cube, transform(-2.5, 1, 0, 1, 0), [0.9, 0.25, 0.2]);
     draw(cube, transform(2.5, 1, 0, 1, 0), [0.2, 0.45, 0.95]);
     draw(sphere, transform(0, 0.7, -2.5, 0.7, 0), [0.95, 0.7, 0.15]);
     draw(pyramid, transform(0, 0, 2.5, 1.2, 0), [0.2, 0.8, 0.4]);
 
-    theta += 2.2;
+    theta += 0.5;
     requestAnimationFrame(render);
 }
 
